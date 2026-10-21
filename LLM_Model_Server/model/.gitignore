@@ -1,0 +1,12 @@
+# Keep the directory layout and instructions, but never upload local models.
+*
+!/.gitignore
+!/README.md
+!/gguf/
+!/hf/
+!/adapters/
+!/original/
+!/gguf/.gitkeep
+!/hf/.gitkeep
+!/adapters/.gitkeep
+!/original/.gitkeep

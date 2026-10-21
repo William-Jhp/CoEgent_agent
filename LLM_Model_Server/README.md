@@ -9,7 +9,7 @@ CoEgent와 별도 프로세스로 실행하며 **시작 전에 런타임과 모�
 
 llama.cpp 실행 파일과 프로젝트 라이브러리를 `runtimes/llamacpp/`에 설치했습니다. vLLM은 전용 `.venv`에서 실행합니다. 한 번에 하나의 관리 서버를 사용하며 두 엔진 모두 `ModelServerPlanner`가 사용하는 HTTP API를 제공합니다.
 
-사용 모델은 서버 내부 `model/`에 복사해 보관합니다. HF checkpoint는 `model/hf/`, Planner LoRA는 `model/adapters/`, GGUF는 `model/gguf/`에 있습니다. 원본 대비 크기·SHA256 확인 결과와 출처는 `model/COPY_MANIFEST.json`에 기록했습니다. 기본 프로필은 이 내부 복사본을 사용합니다.
+사용 모델은 서버 내부 `model/`에 복사해 보관합니다. Git clone에는 모델 배치용 디렉토리와 [배치 안내](model/README.md)만 포함됩니다. 다른 PC에서는 모델 파일을 직접 넣어야 합니다. HF checkpoint는 `model/hf/`, Planner LoRA는 `model/adapters/`, GGUF는 `model/gguf/`에 배치합니다. 기존 개발 PC의 원본 대비 크기·SHA256 확인 결과와 출처는 로컬 `model/COPY_MANIFEST.json`에 기록했습니다. 기본 프로필은 이 내부 복사본을 사용합니다.
 
 추가 E4B 모델은 `model/gguf/gemma-4-E4B_q4_0-it.gguf`(Google IT QAT Q4_0)와 `model/hf/gemma-4-E4B-it/`(Google IT BF16)입니다. 출처·revision·SHA256은 각 `*.source.json`에 기록합니다. CoEgent의 `InprocessModelPlanner` 기본값도 이 **GGUF와 동일한 llama.cpp 라이브러리**를 사용합니다. HF 사본은 명시적인 `TransformersModelPlanner` / `--planner hf`용으로 유지합니다.
 

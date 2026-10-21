@@ -32,7 +32,6 @@
 **/*.pth
 **/*.pem
 **/*.key
-/LLM_Model_Server/model/
 /LLM_Model_Server/runtimes/
 /LLM_Model_Server/run/
 /LLM_Model_Server/logs/

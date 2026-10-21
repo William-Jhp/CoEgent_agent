@@ -1,0 +1,216 @@
+{
+  "profile": "a2-isaac",
+  "version": 1,
+  "tools": [
+    {
+      "name": "RobotBackend.go_to",
+      "file": "planner/a2sim/robot/backend.py",
+      "description": "현재 위치에서 지도 좌표 x,y까지 경로 계산과 추종. 목적지만 지정하며 waypoint를 LLM이 만들지 않는다.",
+      "args_schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "x": {
+            "type": "number"
+          },
+          "y": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "x",
+          "y"
+        ]
+      },
+      "returns": "bool: 경로 없음/이동 실패는 False. 도착 근거는 별도 확인.",
+      "kind": "motion"
+    },
+    {
+      "name": "RobotBackend.localize",
+      "file": "planner/a2sim/robot/backend.py",
+      "description": "설정된 저장 지도에서 localization 시작, READY와 최신 TF를 기다린다.",
+      "args_schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {},
+        "required": []
+      },
+      "returns": "dict: ready_s(number), task_id(string).",
+      "kind": "localization"
+    },
+    {
+      "name": "RobotBackend.stop_localization",
+      "file": "planner/a2sim/robot/backend.py",
+      "description": "localization 종료 명령 발행. 반환 자체가 종료 확인을 의미하지 않는다.",
+      "args_schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "grace_s": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": []
+      },
+      "returns": "None; 종료 상태 확인은 실행 adapter가 담당.",
+      "kind": "localization"
+    },
+    {
+      "name": "RobotBackend.refresh_pose",
+      "file": "planner/a2sim/robot/backend.py",
+      "description": "최신 TF 위치를 확인한다. stale/누락이면 RobotError.",
+      "args_schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "max_age": {
+            "anyOf": [
+              {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": []
+      },
+      "returns": "RobotState 객체. 위치/방향은 x,y,z,yaw 속성. JSON 변환은 adapter 필요.",
+      "kind": "observation"
+    },
+    {
+      "name": "RobotBackend.check_battery",
+      "file": "planner/a2sim/robot/backend.py",
+      "description": "배터리 비율 조회와 설정된 최소 잔량 검사. 누락/낮은 잔량이면 RobotError.",
+      "args_schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {},
+        "required": []
+      },
+      "returns": "float 0..1 (백분율 0..100 아님).",
+      "kind": "observation"
+    },
+    {
+      "name": "RobotBackend.observe",
+      "file": "planner/a2sim/robot/backend.py",
+      "description": "전방 카메라 최신 RGB 영상 획득/보정. 의미 분석은 수행하지 않는다.",
+      "args_schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "yaw_offset": {
+            "type": "number",
+            "const": 0
+          }
+        },
+        "required": []
+      },
+      "returns": "tuple: [0]=RGB numpy 배열, [1]=None. opaque 영상 데이터.",
+      "kind": "camera"
+    },
+    {
+      "name": "RobotBackend.ensure_nav_active",
+      "file": "planner/a2sim/robot/backend.py",
+      "description": "Nav2 controller lifecycle 활성 상태를 확인하고 필요시 STARTUP.",
+      "args_schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {},
+        "required": []
+      },
+      "returns": "string: already active 또는 started. 실패 시 RobotError.",
+      "kind": "lifecycle"
+    },
+    {
+      "name": "GridNavigator.plan",
+      "file": "planner/a2sim/nav/grid_nav.py",
+      "description": "주행 가능 격자에서 경로만 계산한다. 로봇을 이동시키지 않는다. start_xy는 현재 측정 좌표나 명시 입력 필요.",
+      "args_schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "start_xy": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "goal_xy": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 2,
+            "maxItems": 2
+          }
+        },
+        "required": [
+          "start_xy",
+          "goal_xy"
+        ]
+      },
+      "returns": "Nx2 numpy 좌표 배열 또는 None (도달 불가).",
+      "kind": "path_planning"
+    },
+    {
+      "name": "WorldState.capture_views",
+      "file": "planner/scripts/world_state_node.py",
+      "description": "WorldState의 최신 360/전방 카메라 뷰를 캡처한다.",
+      "args_schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {},
+        "required": []
+      },
+      "returns": "tuple: [0]=views(list of label/PIL image), [1]=stamp, [2]=received, [3]=source. 영상은 opaque.",
+      "kind": "camera"
+    },
+    {
+      "name": "WorldState.describe",
+      "file": "planner/scripts/world_state_node.py",
+      "description": "capture_views가 반환한 views로 장면/사람/문자/장애물 가능성 분석. 이동 가능성이나 물체 좌표를 확정하지 않는다.",
+      "args_schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "views": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "$result": {
+                "type": "string",
+                "pattern": "^[A-Za-z][A-Za-z0-9_]{0,63}$"
+              },
+              "index": {
+                "type": "integer",
+                "const": 0
+              }
+            },
+            "required": [
+              "$result",
+              "index"
+            ]
+          }
+        },
+        "required": [
+          "views"
+        ]
+      },
+      "returns": "LLM reply 객체의 data: summary, people_visible, readable_text, possible_obstruction. verified 측정 아님.",
+      "kind": "vision"
+    }
+  ]
+}

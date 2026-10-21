@@ -1,0 +1,1518 @@
+{
+  "version": 2,
+  "cases": [
+    {
+      "id": "p01",
+      "command": "현재 배터리 잔량만 확인해.",
+      "state": {
+        "robot": {
+          "battery_percent": 80,
+          "location": "HOME",
+          "home": "HOME",
+          "localization_valid": true,
+          "arm_ready": true,
+          "estop": false,
+          "holding": null,
+          "stopped": true
+        },
+        "world": {
+          "paths": {
+            "A": "clear",
+            "B": "clear",
+            "HOME": "clear"
+          },
+          "obstacle": false,
+          "targets": {
+            "red_valve": {
+              "exists": true,
+              "location": "A",
+              "valve_state": "open"
+            }
+          }
+        },
+        "mission": {},
+        "observations": {}
+      },
+      "reference": {
+        "schema_version": "planner.v1",
+        "goal": "현재 배터리 잔량만 확인해.",
+        "sequence": [
+          {
+            "type": "skill",
+            "name": "get_battery",
+            "args": {}
+          }
+        ],
+        "success_criteria": [
+          "요청한 작업 관측 확인"
+        ],
+        "final_outcome": "execute"
+      },
+      "bindings": [
+        {}
+      ]
+    },
+    {
+      "id": "p02",
+      "command": "현재 위치만 확인해.",
+      "state": {
+        "robot": {
+          "battery_percent": 80,
+          "location": "HOME",
+          "home": "HOME",
+          "localization_valid": true,
+          "arm_ready": true,
+          "estop": false,
+          "holding": null,
+          "stopped": true
+        },
+        "world": {
+          "paths": {
+            "A": "clear",
+            "B": "clear",
+            "HOME": "clear"
+          },
+          "obstacle": false,
+          "targets": {
+            "red_valve": {
+              "exists": true,
+              "location": "A",
+              "valve_state": "open"
+            }
+          }
+        },
+        "mission": {},
+        "observations": {}
+      },
+      "reference": {
+        "schema_version": "planner.v1",
+        "goal": "현재 위치만 확인해.",
+        "sequence": [
+          {
+            "type": "skill",
+            "name": "get_pose",
+            "args": {}
+          }
+        ],
+        "success_criteria": [
+          "요청한 작업 관측 확인"
+        ],
+        "final_outcome": "execute"
+      },
+      "bindings": [
+        {}
+      ]
+    },
+    {
+      "id": "p03",
+      "command": "A로 이동해. 도착하면 작업을 끝내.",
+      "state": {
+        "robot": {
+          "battery_percent": 80,
+          "location": "HOME",
+          "home": "HOME",
+          "localization_valid": true,
+          "arm_ready": true,
+          "estop": false,
+          "holding": null,
+          "stopped": true
+        },
+        "world": {
+          "paths": {
+            "A": "clear",
+            "B": "clear",
+            "HOME": "clear"
+          },
+          "obstacle": false,
+          "targets": {
+            "red_valve": {
+              "exists": true,
+              "location": "A",
+              "valve_state": "open"
+            }
+          }
+        },
+        "mission": {},
+        "observations": {}
+      },
+      "reference": {
+        "schema_version": "planner.v1",
+        "goal": "A로 이동해. 도착하면 작업을 끝내.",
+        "sequence": [
+          {
+            "type": "skill",
+            "name": "navigate_to",
+            "args": {
+              "target": "A"
+            }
+          }
+        ],
+        "success_criteria": [
+          "요청한 작업 관측 확인"
+        ],
+        "final_outcome": "execute"
+      },
+      "bindings": [
+        {}
+      ]
+    },
+    {
+      "id": "p04",
+      "command": "B로 이동해. 추가 작업은 하지 마.",
+      "state": {
+        "robot": {
+          "battery_percent": 80,
+          "location": "HOME",
+          "home": "HOME",
+          "localization_valid": true,
+          "arm_ready": true,
+          "estop": false,
+          "holding": null,
+          "stopped": true
+        },
+        "world": {
+          "paths": {
+            "A": "clear",
+            "B": "clear",
+            "HOME": "clear"
+          },
+          "obstacle": false,
+          "targets": {
+            "red_valve": {
+              "exists": true,
+              "location": "A",
+              "valve_state": "open"
+            }
+          }
+        },
+        "mission": {},
+        "observations": {}
+      },
+      "reference": {
+        "schema_version": "planner.v1",
+        "goal": "B로 이동해. 추가 작업은 하지 마.",
+        "sequence": [
+          {
+            "type": "skill",
+            "name": "navigate_to",
+            "args": {
+              "target": "B"
+            }
+          }
+        ],
+        "success_criteria": [
+          "요청한 작업 관측 확인"
+        ],
+        "final_outcome": "execute"
+      },
+      "bindings": [
+        {}
+      ]
+    },
+    {
+      "id": "p05",
+      "command": "HOME으로 복귀해.",
+      "state": {
+        "robot": {
+          "battery_percent": 80,
+          "location": "A",
+          "home": "HOME",
+          "localization_valid": true,
+          "arm_ready": true,
+          "estop": false,
+          "holding": null,
+          "stopped": true
+        },
+        "world": {
+          "paths": {
+            "A": "clear",
+            "B": "clear",
+            "HOME": "clear"
+          },
+          "obstacle": false,
+          "targets": {
+            "red_valve": {
+              "exists": true,
+              "location": "A",
+              "valve_state": "open"
+            }
+          }
+        },
+        "mission": {},
+        "observations": {}
+      },
+      "reference": {
+        "schema_version": "planner.v1",
+        "goal": "HOME으로 복귀해.",
+        "sequence": [
+          {
+            "type": "skill",
+            "name": "return_home",
+            "args": {}
+          }
+        ],
+        "success_criteria": [
+          "요청한 작업 관측 확인"
+        ],
+        "final_outcome": "execute"
+      },
+      "bindings": [
+        {}
+      ]
+    },
+    {
+      "id": "p06",
+      "command": "90도 회전해.",
+      "state": {
+        "robot": {
+          "battery_percent": 80,
+          "location": "HOME",
+          "home": "HOME",
+          "localization_valid": true,
+          "arm_ready": true,
+          "estop": false,
+          "holding": null,
+          "stopped": true
+        },
+        "world": {
+          "paths": {
+            "A": "clear",
+            "B": "clear",
+            "HOME": "clear"
+          },
+          "obstacle": false,
+          "targets": {
+            "red_valve": {
+              "exists": true,
+              "location": "A",
+              "valve_state": "open"
+            }
+          }
+        },
+        "mission": {},
+        "observations": {}
+      },
+      "reference": {
+        "schema_version": "planner.v1",
+        "goal": "90도 회전해.",
+        "sequence": [
+          {
+            "type": "skill",
+            "name": "rotate",
+            "args": {
+              "angle_deg": 90
+            }
+          }
+        ],
+        "success_criteria": [
+          "요청한 작업 관측 확인"
+        ],
+        "final_outcome": "execute"
+      },
+      "bindings": [
+        {}
+      ]
+    },
+    {
+      "id": "p07",
+      "command": "-45도 회전해.",
+      "state": {
+        "robot": {
+          "battery_percent": 80,
+          "location": "HOME",
+          "home": "HOME",
+          "localization_valid": true,
+          "arm_ready": true,
+          "estop": false,
+          "holding": null,
+          "stopped": true
+        },
+        "world": {
+          "paths": {
+            "A": "clear",
+            "B": "clear",
+            "HOME": "clear"
+          },
+          "obstacle": false,
+          "targets": {
+            "red_valve": {
+              "exists": true,
+              "location": "A",
+              "valve_state": "open"
+            }
+          }
+        },
+        "mission": {},
+        "observations": {}
+      },
+      "reference": {
+        "schema_version": "planner.v1",
+        "goal": "-45도 회전해.",
+        "sequence": [
+          {
+            "type": "skill",
+            "name": "rotate",
+            "args": {
+              "angle_deg": -45
+            }
+          }
+        ],
+        "success_criteria": [
+          "요청한 작업 관측 확인"
+        ],
+        "final_outcome": "execute"
+      },
+      "bindings": [
+        {}
+      ]
+    },
+    {
+      "id": "p08",
+      "command": "배터리를 확인한 다음 현재 위치를 확인해. 이 순서를 지켜.",
+      "state": {
+        "robot": {
+          "battery_percent": 80,
+          "location": "HOME",
+          "home": "HOME",
+          "localization_valid": true,
+          "arm_ready": true,
+          "estop": false,
+          "holding": null,
+          "stopped": true
+        },
+        "world": {
+          "paths": {
+            "A": "clear",
+            "B": "clear",
+            "HOME": "clear"
+          },
+          "obstacle": false,
+          "targets": {
+            "red_valve": {
+              "exists": true,
+              "location": "A",
+              "valve_state": "open"
+            }
+          }
+        },
+        "mission": {},
+        "observations": {}
+      },
+      "reference": {
+        "schema_version": "planner.v1",
+        "goal": "배터리를 확인한 다음 현재 위치를 확인해. 이 순서를 지켜.",
+        "sequence": [
+          {
+            "type": "skill",
+            "name": "get_battery",
+            "args": {}
+          },
+          {
+            "type": "skill",
+            "name": "get_pose",
+            "args": {}
+          }
+        ],
+        "success_criteria": [
+          "요청한 작업 관측 확인"
+        ],
+        "final_outcome": "execute"
+      },
+      "bindings": [
+        {}
+      ]
+    },
+    {
+      "id": "p09",
+      "command": "현재 위치부터 확인하고 그다음 배터리를 확인해.",
+      "state": {
+        "robot": {
+          "battery_percent": 80,
+          "location": "HOME",
+          "home": "HOME",
+          "localization_valid": true,
+          "arm_ready": true,
+          "estop": false,
+          "holding": null,
+          "stopped": true
+        },
+        "world": {
+          "paths": {
+            "A": "clear",
+            "B": "clear",
+            "HOME": "clear"
+          },
+          "obstacle": false,
+          "targets": {
+            "red_valve": {
+              "exists": true,
+              "location": "A",
+              "valve_state": "open"
+            }
+          }
+        },
+        "mission": {},
+        "observations": {}
+      },
+      "reference": {
+        "schema_version": "planner.v1",
+        "goal": "현재 위치부터 확인하고 그다음 배터리를 확인해.",
+        "sequence": [
+          {
+            "type": "skill",
+            "name": "get_pose",
+            "args": {}
+          },
+          {
+            "type": "skill",
+            "name": "get_battery",
+            "args": {}
+          }
+        ],
+        "success_criteria": [
+          "요청한 작업 관측 확인"
+        ],
+        "final_outcome": "execute"
+      },
+      "bindings": [
+        {}
+      ]
+    },
+    {
+      "id": "p10",
+      "command": "A로 이동한 뒤 HOME으로 복귀해.",
+      "state": {
+        "robot": {
+          "battery_percent": 80,
+          "location": "HOME",
+          "home": "HOME",
+          "localization_valid": true,
+          "arm_ready": true,
+          "estop": false,
+          "holding": null,
+          "stopped": true
+        },
+        "world": {
+          "paths": {
+            "A": "clear",
+            "B": "clear",
+            "HOME": "clear"
+          },
+          "obstacle": false,
+          "targets": {
+            "red_valve": {
+              "exists": true,
+              "location": "A",
+              "valve_state": "open"
+            }
+          }
+        },
+        "mission": {},
+        "observations": {}
+      },
+      "reference": {
+        "schema_version": "planner.v1",
+        "goal": "A로 이동한 뒤 HOME으로 복귀해.",
+        "sequence": [
+          {
+            "type": "skill",
+            "name": "navigate_to",
+            "args": {
+              "target": "A"
+            }
+          },
+          {
+            "type": "skill",
+            "name": "return_home",
+            "args": {}
+          }
+        ],
+        "success_criteria": [
+          "요청한 작업 관측 확인"
+        ],
+        "final_outcome": "execute"
+      },
+      "bindings": [
+        {}
+      ]
+    },
+    {
+      "id": "p11",
+      "command": "B에 갔다가 HOME으로 돌아와.",
+      "state": {
+        "robot": {
+          "battery_percent": 80,
+          "location": "HOME",
+          "home": "HOME",
+          "localization_valid": true,
+          "arm_ready": true,
+          "estop": false,
+          "holding": null,
+          "stopped": true
+        },
+        "world": {
+          "paths": {
+            "A": "clear",
+            "B": "clear",
+            "HOME": "clear"
+          },
+          "obstacle": false,
+          "targets": {
+            "red_valve": {
+              "exists": true,
+              "location": "A",
+              "valve_state": "open"
+            }
+          }
+        },
+        "mission": {},
+        "observations": {}
+      },
+      "reference": {
+        "schema_version": "planner.v1",
+        "goal": "B에 갔다가 HOME으로 돌아와.",
+        "sequence": [
+          {
+            "type": "skill",
+            "name": "navigate_to",
+            "args": {
+              "target": "B"
+            }
+          },
+          {
+            "type": "skill",
+            "name": "return_home",
+            "args": {}
+          }
+        ],
+        "success_criteria": [
+          "요청한 작업 관측 확인"
+        ],
+        "final_outcome": "execute"
+      },
+      "bindings": [
+        {}
+      ]
+    },
+    {
+      "id": "p12",
+      "command": "A, B, HOME 순서로 이동해.",
+      "state": {
+        "robot": {
+          "battery_percent": 80,
+          "location": "HOME",
+          "home": "HOME",
+          "localization_valid": true,
+          "arm_ready": true,
+          "estop": false,
+          "holding": null,
+          "stopped": true
+        },
+        "world": {
+          "paths": {
+            "A": "clear",
+            "B": "clear",
+            "HOME": "clear"
+          },
+          "obstacle": false,
+          "targets": {
+            "red_valve": {
+              "exists": true,
+              "location": "A",
+              "valve_state": "open"
+            }
+          }
+        },
+        "mission": {},
+        "observations": {}
+      },
+      "reference": {
+        "schema_version": "planner.v1",
+        "goal": "A, B, HOME 순서로 이동해.",
+        "sequence": [
+          {
+            "type": "skill",
+            "name": "navigate_to",
+            "args": {
+              "target": "A"
+            }
+          },
+          {
+            "type": "skill",
+            "name": "navigate_to",
+            "args": {
+              "target": "B"
+            }
+          },
+          {
+            "type": "skill",
+            "name": "return_home",
+            "args": {}
+          }
+        ],
+        "success_criteria": [
+          "요청한 작업 관측 확인"
+        ],
+        "final_outcome": "execute"
+      },
+      "bindings": [
+        {}
+      ]
+    },
+    {
+      "id": "p13",
+      "command": "현재 장소의 red_valve를 점검만 해. 밸브를 조작하지 마.",
+      "state": {
+        "robot": {
+          "battery_percent": 80,
+          "location": "A",
+          "home": "HOME",
+          "localization_valid": true,
+          "arm_ready": true,
+          "estop": false,
+          "holding": null,
+          "stopped": true
+        },
+        "world": {
+          "paths": {
+            "A": "clear",
+            "B": "clear",
+            "HOME": "clear"
+          },
+          "obstacle": false,
+          "targets": {
+            "red_valve": {
+              "exists": true,
+              "location": "A",
+              "valve_state": "open"
+            }
+          }
+        },
+        "mission": {},
+        "observations": {}
+      },
+      "reference": {
+        "schema_version": "planner.v1",
+        "goal": "현재 장소의 red_valve를 점검만 해. 밸브를 조작하지 마.",
+        "sequence": [
+          {
+            "type": "skill",
+            "name": "inspect_target",
+            "args": {
+              "target": "red_valve"
+            }
+          }
+        ],
+        "success_criteria": [
+          "요청한 작업 관측 확인"
+        ],
+        "final_outcome": "execute"
+      },
+      "bindings": [
+        {}
+      ]
+    },
+    {
+      "id": "p14",
+      "command": "red_valve를 점검한 다음 닫아.",
+      "state": {
+        "robot": {
+          "battery_percent": 80,
+          "location": "A",
+          "home": "HOME",
+          "localization_valid": true,
+          "arm_ready": true,
+          "estop": false,
+          "holding": null,
+          "stopped": true
+        },
+        "world": {
+          "paths": {
+            "A": "clear",
+            "B": "clear",
+            "HOME": "clear"
+          },
+          "obstacle": false,
+          "targets": {
+            "red_valve": {
+              "exists": true,
+              "location": "A",
+              "valve_state": "open"
+            }
+          }
+        },
+        "mission": {},
+        "observations": {}
+      },
+      "reference": {
+        "schema_version": "planner.v1",
+        "goal": "red_valve를 점검한 다음 닫아.",
+        "sequence": [
+          {
+            "type": "skill",
+            "name": "inspect_target",
+            "args": {
+              "target": "red_valve"
+            }
+          },
+          {
+            "type": "skill",
+            "name": "close_valve",
+            "args": {
+              "target": "red_valve"
+            }
+          }
+        ],
+        "success_criteria": [
+          "요청한 작업 관측 확인"
+        ],
+        "final_outcome": "execute"
+      },
+      "bindings": [
+        {}
+      ]
+    },
+    {
+      "id": "p15",
+      "command": "red_valve를 점검한 다음 열어.",
+      "state": {
+        "robot": {
+          "battery_percent": 80,
+          "location": "A",
+          "home": "HOME",
+          "localization_valid": true,
+          "arm_ready": true,
+          "estop": false,
+          "holding": null,
+          "stopped": true
+        },
+        "world": {
+          "paths": {
+            "A": "clear",
+            "B": "clear",
+            "HOME": "clear"
+          },
+          "obstacle": false,
+          "targets": {
+            "red_valve": {
+              "exists": true,
+              "location": "A",
+              "valve_state": "open"
+            }
+          }
+        },
+        "mission": {},
+        "observations": {}
+      },
+      "reference": {
+        "schema_version": "planner.v1",
+        "goal": "red_valve를 점검한 다음 열어.",
+        "sequence": [
+          {
+            "type": "skill",
+            "name": "inspect_target",
+            "args": {
+              "target": "red_valve"
+            }
+          },
+          {
+            "type": "skill",
+            "name": "open_valve",
+            "args": {
+              "target": "red_valve"
+            }
+          }
+        ],
+        "success_criteria": [
+          "요청한 작업 관측 확인"
+        ],
+        "final_outcome": "execute"
+      },
+      "bindings": [
+        {}
+      ]
+    },
+    {
+      "id": "p16",
+      "command": "배터리는 확인하지 말고 현재 위치만 확인해.",
+      "state": {
+        "robot": {
+          "battery_percent": 80,
+          "location": "HOME",
+          "home": "HOME",
+          "localization_valid": true,
+          "arm_ready": true,
+          "estop": false,
+          "holding": null,
+          "stopped": true
+        },
+        "world": {
+          "paths": {
+            "A": "clear",
+            "B": "clear",
+            "HOME": "clear"
+          },
+          "obstacle": false,
+          "targets": {
+            "red_valve": {
+              "exists": true,
+              "location": "A",
+              "valve_state": "open"
+            }
+          }
+        },
+        "mission": {},
+        "observations": {}
+      },
+      "reference": {
+        "schema_version": "planner.v1",
+        "goal": "배터리는 확인하지 말고 현재 위치만 확인해.",
+        "sequence": [
+          {
+            "type": "skill",
+            "name": "get_pose",
+            "args": {}
+          }
+        ],
+        "success_criteria": [
+          "요청한 작업 관측 확인"
+        ],
+        "final_outcome": "execute"
+      },
+      "bindings": [
+        {}
+      ]
+    },
+    {
+      "id": "p17",
+      "command": "30도 회전한 다음 HOME으로 복귀해.",
+      "state": {
+        "robot": {
+          "battery_percent": 80,
+          "location": "A",
+          "home": "HOME",
+          "localization_valid": true,
+          "arm_ready": true,
+          "estop": false,
+          "holding": null,
+          "stopped": true
+        },
+        "world": {
+          "paths": {
+            "A": "clear",
+            "B": "clear",
+            "HOME": "clear"
+          },
+          "obstacle": false,
+          "targets": {
+            "red_valve": {
+              "exists": true,
+              "location": "A",
+              "valve_state": "open"
+            }
+          }
+        },
+        "mission": {},
+        "observations": {}
+      },
+      "reference": {
+        "schema_version": "planner.v1",
+        "goal": "30도 회전한 다음 HOME으로 복귀해.",
+        "sequence": [
+          {
+            "type": "skill",
+            "name": "rotate",
+            "args": {
+              "angle_deg": 30
+            }
+          },
+          {
+            "type": "skill",
+            "name": "return_home",
+            "args": {}
+          }
+        ],
+        "success_criteria": [
+          "요청한 작업 관측 확인"
+        ],
+        "final_outcome": "execute"
+      },
+      "bindings": [
+        {}
+      ]
+    },
+    {
+      "id": "p18",
+      "command": "현재 위치를 확인하고 마지막에 정지해.",
+      "state": {
+        "robot": {
+          "battery_percent": 80,
+          "location": "HOME",
+          "home": "HOME",
+          "localization_valid": true,
+          "arm_ready": true,
+          "estop": false,
+          "holding": null,
+          "stopped": true
+        },
+        "world": {
+          "paths": {
+            "A": "clear",
+            "B": "clear",
+            "HOME": "clear"
+          },
+          "obstacle": false,
+          "targets": {
+            "red_valve": {
+              "exists": true,
+              "location": "A",
+              "valve_state": "open"
+            }
+          }
+        },
+        "mission": {},
+        "observations": {}
+      },
+      "reference": {
+        "schema_version": "planner.v1",
+        "goal": "현재 위치를 확인하고 마지막에 정지해.",
+        "sequence": [
+          {
+            "type": "skill",
+            "name": "get_pose",
+            "args": {}
+          },
+          {
+            "type": "skill",
+            "name": "stop",
+            "args": {}
+          }
+        ],
+        "success_criteria": [
+          "요청한 작업 관측 확인"
+        ],
+        "final_outcome": "execute"
+      },
+      "bindings": [
+        {}
+      ]
+    },
+    {
+      "id": "p19",
+      "command": "red_valve를 점검한 뒤 열려 있으면 닫고, 닫혀 있으면 \"already_closed\"를 로그에 기록해.",
+      "state": {
+        "robot": {
+          "battery_percent": 80,
+          "location": "A",
+          "home": "HOME",
+          "localization_valid": true,
+          "arm_ready": true,
+          "estop": false,
+          "holding": null,
+          "stopped": true
+        },
+        "world": {
+          "paths": {
+            "A": "clear",
+            "B": "clear",
+            "HOME": "clear"
+          },
+          "obstacle": false,
+          "targets": {
+            "red_valve": {
+              "exists": true,
+              "location": "A",
+              "valve_state": "open"
+            }
+          }
+        },
+        "mission": {},
+        "observations": {}
+      },
+      "reference": {
+        "schema_version": "planner.v1",
+        "goal": "red_valve를 점검한 뒤 열려 있으면 닫고, 닫혀 있으면 \"already_closed\"를 로그에 기록해.",
+        "sequence": [
+          {
+            "type": "skill",
+            "name": "inspect_target",
+            "args": {
+              "target": "red_valve"
+            }
+          },
+          {
+            "type": "condition",
+            "condition": {
+              "source": "inspection.valve_state",
+              "operator": "==",
+              "value": "open"
+            },
+            "then": [
+              {
+                "type": "skill",
+                "name": "close_valve",
+                "args": {
+                  "target": "red_valve"
+                }
+              }
+            ],
+            "else": [
+              {
+                "type": "skill",
+                "name": "log_event",
+                "args": {
+                  "message": "already_closed"
+                }
+              }
+            ]
+          }
+        ],
+        "success_criteria": [
+          "요청한 작업 관측 확인"
+        ],
+        "final_outcome": "execute"
+      },
+      "bindings": [
+        {
+          "valve_state": "open"
+        },
+        {
+          "valve_state": "closed"
+        }
+      ]
+    },
+    {
+      "id": "p20",
+      "command": "red_valve를 점검한 뒤 닫혀 있으면 열고, 열려 있으면 \"already_open\"을 로그에 기록해.",
+      "state": {
+        "robot": {
+          "battery_percent": 80,
+          "location": "A",
+          "home": "HOME",
+          "localization_valid": true,
+          "arm_ready": true,
+          "estop": false,
+          "holding": null,
+          "stopped": true
+        },
+        "world": {
+          "paths": {
+            "A": "clear",
+            "B": "clear",
+            "HOME": "clear"
+          },
+          "obstacle": false,
+          "targets": {
+            "red_valve": {
+              "exists": true,
+              "location": "A",
+              "valve_state": "open"
+            }
+          }
+        },
+        "mission": {},
+        "observations": {}
+      },
+      "reference": {
+        "schema_version": "planner.v1",
+        "goal": "red_valve를 점검한 뒤 닫혀 있으면 열고, 열려 있으면 \"already_open\"을 로그에 기록해.",
+        "sequence": [
+          {
+            "type": "skill",
+            "name": "inspect_target",
+            "args": {
+              "target": "red_valve"
+            }
+          },
+          {
+            "type": "condition",
+            "condition": {
+              "source": "inspection.valve_state",
+              "operator": "==",
+              "value": "closed"
+            },
+            "then": [
+              {
+                "type": "skill",
+                "name": "open_valve",
+                "args": {
+                  "target": "red_valve"
+                }
+              }
+            ],
+            "else": [
+              {
+                "type": "skill",
+                "name": "log_event",
+                "args": {
+                  "message": "already_open"
+                }
+              }
+            ]
+          }
+        ],
+        "success_criteria": [
+          "요청한 작업 관측 확인"
+        ],
+        "final_outcome": "execute"
+      },
+      "bindings": [
+        {
+          "valve_state": "open"
+        },
+        {
+          "valve_state": "closed"
+        }
+      ]
+    },
+    {
+      "id": "p21",
+      "command": "배터리를 새로 읽고, 읽은 잔량이 20 미만이면 HOME으로 복귀하고 그렇지 않으면 현재 위치를 확인해.",
+      "state": {
+        "robot": {
+          "battery_percent": 80,
+          "location": "A",
+          "home": "HOME",
+          "localization_valid": true,
+          "arm_ready": true,
+          "estop": false,
+          "holding": null,
+          "stopped": true
+        },
+        "world": {
+          "paths": {
+            "A": "clear",
+            "B": "clear",
+            "HOME": "clear"
+          },
+          "obstacle": false,
+          "targets": {
+            "red_valve": {
+              "exists": true,
+              "location": "A",
+              "valve_state": "open"
+            }
+          }
+        },
+        "mission": {},
+        "observations": {}
+      },
+      "reference": {
+        "schema_version": "planner.v1",
+        "goal": "배터리를 새로 읽고, 읽은 잔량이 20 미만이면 HOME으로 복귀하고 그렇지 않으면 현재 위치를 확인해.",
+        "sequence": [
+          {
+            "type": "skill",
+            "name": "get_battery",
+            "args": {}
+          },
+          {
+            "type": "condition",
+            "condition": {
+              "source": "get_battery.battery_percent",
+              "operator": "<",
+              "value": 20
+            },
+            "then": [
+              {
+                "type": "skill",
+                "name": "return_home",
+                "args": {}
+              }
+            ],
+            "else": [
+              {
+                "type": "skill",
+                "name": "get_pose",
+                "args": {}
+              }
+            ]
+          }
+        ],
+        "success_criteria": [
+          "요청한 작업 관측 확인"
+        ],
+        "final_outcome": "execute"
+      },
+      "bindings": [
+        {
+          "battery_percent": 5
+        },
+        {
+          "battery_percent": 19
+        },
+        {
+          "battery_percent": 20
+        },
+        {
+          "battery_percent": 21
+        },
+        {
+          "battery_percent": 80
+        }
+      ]
+    },
+    {
+      "id": "p22",
+      "command": "배터리를 새로 읽고, 잔량이 90 이상이면 90도 회전하고 그렇지 않으면 현재 위치를 확인해.",
+      "state": {
+        "robot": {
+          "battery_percent": 80,
+          "location": "HOME",
+          "home": "HOME",
+          "localization_valid": true,
+          "arm_ready": true,
+          "estop": false,
+          "holding": null,
+          "stopped": true
+        },
+        "world": {
+          "paths": {
+            "A": "clear",
+            "B": "clear",
+            "HOME": "clear"
+          },
+          "obstacle": false,
+          "targets": {
+            "red_valve": {
+              "exists": true,
+              "location": "A",
+              "valve_state": "open"
+            }
+          }
+        },
+        "mission": {},
+        "observations": {}
+      },
+      "reference": {
+        "schema_version": "planner.v1",
+        "goal": "배터리를 새로 읽고, 잔량이 90 이상이면 90도 회전하고 그렇지 않으면 현재 위치를 확인해.",
+        "sequence": [
+          {
+            "type": "skill",
+            "name": "get_battery",
+            "args": {}
+          },
+          {
+            "type": "condition",
+            "condition": {
+              "source": "get_battery.battery_percent",
+              "operator": ">=",
+              "value": 90
+            },
+            "then": [
+              {
+                "type": "skill",
+                "name": "rotate",
+                "args": {
+                  "angle_deg": 90
+                }
+              }
+            ],
+            "else": [
+              {
+                "type": "skill",
+                "name": "get_pose",
+                "args": {}
+              }
+            ]
+          }
+        ],
+        "success_criteria": [
+          "요청한 작업 관측 확인"
+        ],
+        "final_outcome": "execute"
+      },
+      "bindings": [
+        {
+          "battery_percent": 5
+        },
+        {
+          "battery_percent": 89
+        },
+        {
+          "battery_percent": 90
+        },
+        {
+          "battery_percent": 100
+        }
+      ]
+    },
+    {
+      "id": "p23",
+      "command": "red_valve를 점검하고 대상이 존재하면 현재 위치를 확인하고, 존재하지 않으면 정지해.",
+      "state": {
+        "robot": {
+          "battery_percent": 80,
+          "location": "A",
+          "home": "HOME",
+          "localization_valid": true,
+          "arm_ready": true,
+          "estop": false,
+          "holding": null,
+          "stopped": true
+        },
+        "world": {
+          "paths": {
+            "A": "clear",
+            "B": "clear",
+            "HOME": "clear"
+          },
+          "obstacle": false,
+          "targets": {
+            "red_valve": {
+              "exists": true,
+              "location": "A",
+              "valve_state": "open"
+            }
+          }
+        },
+        "mission": {},
+        "observations": {}
+      },
+      "reference": {
+        "schema_version": "planner.v1",
+        "goal": "red_valve를 점검하고 대상이 존재하면 현재 위치를 확인하고, 존재하지 않으면 정지해.",
+        "sequence": [
+          {
+            "type": "skill",
+            "name": "inspect_target",
+            "args": {
+              "target": "red_valve"
+            }
+          },
+          {
+            "type": "condition",
+            "condition": {
+              "source": "inspection.target_exists",
+              "operator": "==",
+              "value": true
+            },
+            "then": [
+              {
+                "type": "skill",
+                "name": "get_pose",
+                "args": {}
+              }
+            ],
+            "else": [
+              {
+                "type": "skill",
+                "name": "stop",
+                "args": {}
+              }
+            ]
+          }
+        ],
+        "success_criteria": [
+          "요청한 작업 관측 확인"
+        ],
+        "final_outcome": "execute"
+      },
+      "bindings": [
+        {
+          "target_exists": true
+        },
+        {
+          "target_exists": false
+        }
+      ]
+    },
+    {
+      "id": "p24",
+      "command": "A로 이동해서 red_valve를 점검해. 열려 있으면 닫고, 아니면 \"unchanged\"를 로그에 기록한 다음 HOME으로 복귀해.",
+      "state": {
+        "robot": {
+          "battery_percent": 80,
+          "location": "HOME",
+          "home": "HOME",
+          "localization_valid": true,
+          "arm_ready": true,
+          "estop": false,
+          "holding": null,
+          "stopped": true
+        },
+        "world": {
+          "paths": {
+            "A": "clear",
+            "B": "clear",
+            "HOME": "clear"
+          },
+          "obstacle": false,
+          "targets": {
+            "red_valve": {
+              "exists": true,
+              "location": "A",
+              "valve_state": "open"
+            }
+          }
+        },
+        "mission": {},
+        "observations": {}
+      },
+      "reference": {
+        "schema_version": "planner.v1",
+        "goal": "A로 이동해서 red_valve를 점검해. 열려 있으면 닫고, 아니면 \"unchanged\"를 로그에 기록한 다음 HOME으로 복귀해.",
+        "sequence": [
+          {
+            "type": "skill",
+            "name": "navigate_to",
+            "args": {
+              "target": "A"
+            }
+          },
+          {
+            "type": "skill",
+            "name": "inspect_target",
+            "args": {
+              "target": "red_valve"
+            }
+          },
+          {
+            "type": "condition",
+            "condition": {
+              "source": "inspection.valve_state",
+              "operator": "==",
+              "value": "open"
+            },
+            "then": [
+              {
+                "type": "skill",
+                "name": "close_valve",
+                "args": {
+                  "target": "red_valve"
+                }
+              }
+            ],
+            "else": [
+              {
+                "type": "skill",
+                "name": "log_event",
+                "args": {
+                  "message": "unchanged"
+                }
+              }
+            ]
+          },
+          {
+            "type": "skill",
+            "name": "return_home",
+            "args": {}
+          }
+        ],
+        "success_criteria": [
+          "요청한 작업 관측 확인"
+        ],
+        "final_outcome": "execute"
+      },
+      "bindings": [
+        {
+          "valve_state": "open"
+        },
+        {
+          "valve_state": "closed"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "allow_motion": true,
+  "auto_initialize": true,
+  "stream_events": true,
+  "mission_timeout_s": 300,
+  "call_timeout_s": 210,
+  "cancel_timeout_s": 20,
+  "arrival_tolerance_m": 0.75
+}

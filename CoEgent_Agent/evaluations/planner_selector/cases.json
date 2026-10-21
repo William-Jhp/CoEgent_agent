@@ -1,0 +1,1036 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "d01",
+      "split": "dev",
+      "command": "현재 배터리 잔량을 확인해.",
+      "expected": "reuse",
+      "expected_plan": "battery",
+      "catalog": [
+        {
+          "key": "battery",
+          "plan": {
+            "schema_version": "planner.v1",
+            "goal": "배터리 잔량 확인",
+            "sequence": [
+              {
+                "type": "skill",
+                "name": "get_battery",
+                "args": {}
+              }
+            ],
+            "success_criteria": [
+              "배터리 잔량 확인 관측 확인"
+            ],
+            "final_outcome": "execute"
+          },
+          "command": "배터리 확인"
+        }
+      ],
+      "category": "reuse"
+    },
+    {
+      "id": "d02",
+      "split": "dev",
+      "command": "배터리 잔량 알려줘.",
+      "expected": "reuse",
+      "expected_plan": "battery",
+      "catalog": [
+        {
+          "key": "battery",
+          "plan": {
+            "schema_version": "planner.v1",
+            "goal": "배터리 잔량 확인",
+            "sequence": [
+              {
+                "type": "skill",
+                "name": "get_battery",
+                "args": {}
+              }
+            ],
+            "success_criteria": [
+              "배터리 잔량 확인 관측 확인"
+            ],
+            "final_outcome": "execute"
+          },
+          "command": "배터리 확인"
+        }
+      ],
+      "category": "reuse"
+    },
+    {
+      "id": "d03",
+      "split": "dev",
+      "command": "A로 이동해.",
+      "expected": "reuse",
+      "expected_plan": "go_a",
+      "catalog": [
+        {
+          "key": "go_a",
+          "plan": {
+            "schema_version": "planner.v1",
+            "goal": "A로 이동",
+            "sequence": [
+              {
+                "type": "skill",
+                "name": "navigate_to",
+                "args": {
+                  "target": "A"
+                }
+              }
+            ],
+            "success_criteria": [
+              "A로 이동 관측 확인"
+            ],
+            "final_outcome": "execute"
+          },
+          "command": "A로 이동"
+        },
+        {
+          "key": "a_return",
+          "plan": {
+            "schema_version": "planner.v1",
+            "goal": "A로 이동 후 HOME 복귀",
+            "sequence": [
+              {
+                "type": "skill",
+                "name": "navigate_to",
+                "args": {
+                  "target": "A"
+                }
+              },
+              {
+                "type": "skill",
+                "name": "return_home",
+                "args": {}
+              }
+            ],
+            "success_criteria": [
+              "A로 이동 후 HOME 복귀 관측 확인"
+            ],
+            "final_outcome": "execute"
+          },
+          "command": "A로 가서 복귀"
+        }
+      ],
+      "category": "extra_return"
+    },
+    {
+      "id": "d04",
+      "split": "dev",
+      "command": "90도 회전해.",
+      "expected": "reuse",
+      "expected_plan": "rotate90",
+      "catalog": [
+        {
+          "key": "rotate90",
+          "plan": {
+            "schema_version": "planner.v1",
+            "goal": "90도 회전",
+            "sequence": [
+              {
+                "type": "skill",
+                "name": "rotate",
+                "args": {
+                  "angle_deg": 90
+                }
+              }
+            ],
+            "success_criteria": [
+              "90도 회전 관측 확인"
+            ],
+            "final_outcome": "execute"
+          },
+          "command": "90도 회전"
+        }
+      ],
+      "category": "number"
+    },
+    {
+      "id": "d05",
+      "split": "dev",
+      "command": "현재 위치를 확인해.",
+      "expected": "generate",
+      "expected_plan": null,
+      "catalog": [
+        {
+          "key": "battery",
+          "plan": {
+            "schema_version": "planner.v1",
+            "goal": "배터리 잔량 확인",
+            "sequence": [
+              {
+                "type": "skill",
+                "name": "get_battery",
+                "args": {}
+              }
+            ],
+            "success_criteria": [
+              "배터리 잔량 확인 관측 확인"
+            ],
+            "final_outcome": "execute"
+          },
+          "command": "배터리 확인"
+        }
+      ],
+      "category": "different_action"
+    },
+    {
+      "id": "d06",
+      "split": "dev",
+      "command": "현재 배터리 잔량을 확인해.",
+      "expected": "generate",
+      "expected_plan": null,
+      "catalog": [],
+      "category": "empty_db"
+    },
+    {
+      "id": "d07",
+      "split": "dev",
+      "command": "배터리는 확인하지 말고 현재 위치만 확인해.",
+      "expected": "generate",
+      "expected_plan": null,
+      "catalog": [
+        {
+          "key": "battery",
+          "plan": {
+            "schema_version": "planner.v1",
+            "goal": "배터리 잔량 확인",
+            "sequence": [
+              {
+                "type": "skill",
+                "name": "get_battery",
+                "args": {}
+              }
+            ],
+            "success_criteria": [
+              "배터리 잔량 확인 관측 확인"
+            ],
+            "final_outcome": "execute"
+          },
+          "command": "배터리 확인"
+        }
+      ],
+      "category": "negation"
+    },
+    {
+      "id": "d08",
+      "split": "dev",
+      "command": "A로 이동한 뒤 HOME으로 복귀해.",
+      "expected": "generate",
+      "expected_plan": null,
+      "catalog": [
+        {
+          "key": "go_a",
+          "plan": {
+            "schema_version": "planner.v1",
+            "goal": "A로 이동",
+            "sequence": [
+              {
+                "type": "skill",
+                "name": "navigate_to",
+                "args": {
+                  "target": "A"
+                }
+              }
+            ],
+            "success_criteria": [
+              "A로 이동 관측 확인"
+            ],
+            "final_outcome": "execute"
+          },
+          "command": "A로 이동"
+        }
+      ],
+      "category": "missing_return"
+    },
+    {
+      "id": "d09",
+      "split": "dev",
+      "command": "거기로 이동해.",
+      "expected": "clarify",
+      "expected_plan": null,
+      "catalog": [
+        {
+          "key": "go_a",
+          "plan": {
+            "schema_version": "planner.v1",
+            "goal": "A로 이동",
+            "sequence": [
+              {
+                "type": "skill",
+                "name": "navigate_to",
+                "args": {
+                  "target": "A"
+                }
+              }
+            ],
+            "success_criteria": [
+              "A로 이동 관측 확인"
+            ],
+            "final_outcome": "execute"
+          },
+          "command": "A로 이동"
+        }
+      ],
+      "category": "pronoun"
+    },
+    {
+      "id": "d10",
+      "split": "dev",
+      "command": "회전해.",
+      "expected": "clarify",
+      "expected_plan": null,
+      "catalog": [
+        {
+          "key": "rotate90",
+          "plan": {
+            "schema_version": "planner.v1",
+            "goal": "90도 회전",
+            "sequence": [
+              {
+                "type": "skill",
+                "name": "rotate",
+                "args": {
+                  "angle_deg": 90
+                }
+              }
+            ],
+            "success_criteria": [
+              "90도 회전 관측 확인"
+            ],
+            "final_outcome": "execute"
+          },
+          "command": "90도 회전"
+        }
+      ],
+      "category": "missing_number"
+    },
+    {
+      "id": "d11",
+      "split": "dev",
+      "command": "그 밸브를 점검해.",
+      "expected": "clarify",
+      "expected_plan": null,
+      "catalog": [
+        {
+          "key": "inspect_red",
+          "plan": {
+            "schema_version": "planner.v1",
+            "goal": "red_valve 점검",
+            "sequence": [
+              {
+                "type": "skill",
+                "name": "inspect_target",
+                "args": {
+                  "target": "red_valve"
+                }
+              }
+            ],
+            "success_criteria": [
+              "red_valve 점검 관측 확인"
+            ],
+            "final_outcome": "execute"
+          },
+          "command": "red_valve 점검"
+        }
+      ],
+      "category": "missing_target"
+    },
+    {
+      "id": "d12",
+      "split": "dev",
+      "command": "처리해줘.",
+      "expected": "clarify",
+      "expected_plan": null,
+      "catalog": [],
+      "category": "empty_ambiguous"
+    },
+    {
+      "id": "h01",
+      "split": "holdout",
+      "command": "남은 전력이 몇 퍼센트인지 읽어 줘.",
+      "expected": "reuse",
+      "expected_plan": "battery",
+      "catalog": [
+        {
+          "key": "battery",
+          "plan": {
+            "schema_version": "planner.v1",
+            "goal": "배터리 잔량 확인",
+            "sequence": [
+              {
+                "type": "skill",
+                "name": "get_battery",
+                "args": {}
+              }
+            ],
+            "success_criteria": [
+              "배터리 잔량 확인 관측 확인"
+            ],
+            "final_outcome": "execute"
+          },
+          "command": "배터리 확인"
+        }
+      ],
+      "category": "paraphrase"
+    },
+    {
+      "id": "h02",
+      "split": "holdout",
+      "command": "지금 로봇 좌표를 조회해 주세요.",
+      "expected": "reuse",
+      "expected_plan": "pose",
+      "catalog": [
+        {
+          "key": "pose",
+          "plan": {
+            "schema_version": "planner.v1",
+            "goal": "현재 위치 확인",
+            "sequence": [
+              {
+                "type": "skill",
+                "name": "get_pose",
+                "args": {}
+              }
+            ],
+            "success_criteria": [
+              "현재 위치 확인 관측 확인"
+            ],
+            "final_outcome": "execute"
+          },
+          "command": "현재 위치 확인"
+        },
+        {
+          "key": "battery",
+          "plan": {
+            "schema_version": "planner.v1",
+            "goal": "배터리 잔량 확인",
+            "sequence": [
+              {
+                "type": "skill",
+                "name": "get_battery",
+                "args": {}
+              }
+            ],
+            "success_criteria": [
+              "배터리 잔량 확인 관측 확인"
+            ],
+            "final_outcome": "execute"
+          },
+          "command": "배터리 확인"
+        }
+      ],
+      "category": "paraphrase"
+    },
+    {
+      "id": "h03",
+      "split": "holdout",
+      "command": "목적지 A까지 가 줘. 도착하면 거기서 끝내.",
+      "expected": "reuse",
+      "expected_plan": "go_a",
+      "catalog": [
+        {
+          "key": "go_a",
+          "plan": {
+            "schema_version": "planner.v1",
+            "goal": "A로 이동",
+            "sequence": [
+              {
+                "type": "skill",
+                "name": "navigate_to",
+                "args": {
+                  "target": "A"
+                }
+              }
+            ],
+            "success_criteria": [
+              "A로 이동 관측 확인"
+            ],
+            "final_outcome": "execute"
+          },
+          "command": "A로 이동"
+        },
+        {
+          "key": "a_return",
+          "plan": {
+            "schema_version": "planner.v1",
+            "goal": "A로 이동 후 HOME 복귀",
+            "sequence": [
+              {
+                "type": "skill",
+                "name": "navigate_to",
+                "args": {
+                  "target": "A"
+                }
+              },
+              {
+                "type": "skill",
+                "name": "return_home",
+                "args": {}
+              }
+            ],
+            "success_criteria": [
+              "A로 이동 후 HOME 복귀 관측 확인"
+            ],
+            "final_outcome": "execute"
+          },
+          "command": "A로 가서 복귀"
+        }
+      ],
+      "category": "extra_return"
+    },
+    {
+      "id": "h04",
+      "split": "holdout",
+      "command": "A에 갔다가 홈으로 돌아와.",
+      "expected": "reuse",
+      "expected_plan": "a_return",
+      "catalog": [
+        {
+          "key": "a_return",
+          "plan": {
+            "schema_version": "planner.v1",
+            "goal": "A로 이동 후 HOME 복귀",
+            "sequence": [
+              {
+                "type": "skill",
+                "name": "navigate_to",
+                "args": {
+                  "target": "A"
+                }
+              },
+              {
+                "type": "skill",
+                "name": "return_home",
+                "args": {}
+              }
+            ],
+            "success_criteria": [
+              "A로 이동 후 HOME 복귀 관측 확인"
+            ],
+            "final_outcome": "execute"
+          },
+          "command": "A로 가서 복귀"
+        },
+        {
+          "key": "go_a",
+          "plan": {
+            "schema_version": "planner.v1",
+            "goal": "A로 이동",
+            "sequence": [
+              {
+                "type": "skill",
+                "name": "navigate_to",
+                "args": {
+                  "target": "A"
+                }
+              }
+            ],
+            "success_criteria": [
+              "A로 이동 관측 확인"
+            ],
+            "final_outcome": "execute"
+          },
+          "command": "A로 이동"
+        }
+      ],
+      "category": "return"
+    },
+    {
+      "id": "h05",
+      "split": "holdout",
+      "command": "배터리를 읽고 나서 위치를 읽어. 그 순서로.",
+      "expected": "reuse",
+      "expected_plan": "battery_pose",
+      "catalog": [
+        {
+          "key": "battery_pose",
+          "plan": {
+            "schema_version": "planner.v1",
+            "goal": "배터리 확인 후 위치 확인",
+            "sequence": [
+              {
+                "type": "skill",
+                "name": "get_battery",
+                "args": {}
+              },
+              {
+                "type": "skill",
+                "name": "get_pose",
+                "args": {}
+              }
+            ],
+            "success_criteria": [
+              "배터리 확인 후 위치 확인 관측 확인"
+            ],
+            "final_outcome": "execute"
+          },
+          "command": "배터리 확인 다음 위치 확인"
+        },
+        {
+          "key": "pose",
+          "plan": {
+            "schema_version": "planner.v1",
+            "goal": "현재 위치 확인",
+            "sequence": [
+              {
+                "type": "skill",
+                "name": "get_pose",
+                "args": {}
+              }
+            ],
+            "success_criteria": [
+              "현재 위치 확인 관측 확인"
+            ],
+            "final_outcome": "execute"
+          },
+          "command": "현재 위치 확인"
+        }
+      ],
+      "category": "order"
+    },
+    {
+      "id": "h06",
+      "split": "holdout",
+      "command": "Rotate by 90 degrees.",
+      "expected": "reuse",
+      "expected_plan": "rotate90",
+      "catalog": [
+        {
+          "key": "rotate90",
+          "plan": {
+            "schema_version": "planner.v1",
+            "goal": "90도 회전",
+            "sequence": [
+              {
+                "type": "skill",
+                "name": "rotate",
+                "args": {
+                  "angle_deg": 90
+                }
+              }
+            ],
+            "success_criteria": [
+              "90도 회전 관측 확인"
+            ],
+            "final_outcome": "execute"
+          },
+          "command": "90도 회전"
+        }
+      ],
+      "category": "english_number"
+    },
+    {
+      "id": "h07",
+      "split": "holdout",
+      "command": "B 지점으로 이동해 줘.",
+      "expected": "generate",
+      "expected_plan": null,
+      "catalog": [
+        {
+          "key": "go_a",
+          "plan": {
+            "schema_version": "planner.v1",
+            "goal": "A로 이동",
+            "sequence": [
+              {
+                "type": "skill",
+                "name": "navigate_to",
+                "args": {
+                  "target": "A"
+                }
+              }
+            ],
+            "success_criteria": [
+              "A로 이동 관측 확인"
+            ],
+            "final_outcome": "execute"
+          },
+          "command": "A로 이동"
+        }
+      ],
+      "category": "target_change"
+    },
+    {
+      "id": "h08",
+      "split": "holdout",
+      "command": "45도 회전해 주세요.",
+      "expected": "generate",
+      "expected_plan": null,
+      "catalog": [
+        {
+          "key": "rotate90",
+          "plan": {
+            "schema_version": "planner.v1",
+            "goal": "90도 회전",
+            "sequence": [
+              {
+                "type": "skill",
+                "name": "rotate",
+                "args": {
+                  "angle_deg": 90
+                }
+              }
+            ],
+            "success_criteria": [
+              "90도 회전 관측 확인"
+            ],
+            "final_outcome": "execute"
+          },
+          "command": "90도 회전"
+        }
+      ],
+      "category": "number_change"
+    },
+    {
+      "id": "h09",
+      "split": "holdout",
+      "command": "좌표부터 읽은 다음 배터리를 읽어 줘.",
+      "expected": "generate",
+      "expected_plan": null,
+      "catalog": [
+        {
+          "key": "battery_pose",
+          "plan": {
+            "schema_version": "planner.v1",
+            "goal": "배터리 확인 후 위치 확인",
+            "sequence": [
+              {
+                "type": "skill",
+                "name": "get_battery",
+                "args": {}
+              },
+              {
+                "type": "skill",
+                "name": "get_pose",
+                "args": {}
+              }
+            ],
+            "success_criteria": [
+              "배터리 확인 후 위치 확인 관측 확인"
+            ],
+            "final_outcome": "execute"
+          },
+          "command": "배터리 확인 다음 위치 확인"
+        }
+      ],
+      "category": "order_change"
+    },
+    {
+      "id": "h10",
+      "split": "holdout",
+      "command": "red_valve를 점검만 해. 열려 있어도 닫지는 마.",
+      "expected": "generate",
+      "expected_plan": null,
+      "catalog": [
+        {
+          "key": "inspect_close",
+          "plan": {
+            "schema_version": "planner.v1",
+            "goal": "red_valve 점검하고 열려 있으면 닫기",
+            "sequence": [
+              {
+                "type": "skill",
+                "name": "inspect_target",
+                "args": {
+                  "target": "red_valve"
+                }
+              },
+              {
+                "type": "condition",
+                "condition": {
+                  "source": "inspection.valve_state",
+                  "operator": "==",
+                  "value": "open"
+                },
+                "then": [
+                  {
+                    "type": "skill",
+                    "name": "close_valve",
+                    "args": {
+                      "target": "red_valve"
+                    }
+                  }
+                ],
+                "else": [
+                  {
+                    "type": "skill",
+                    "name": "log_event",
+                    "args": {
+                      "message": "이미 닫힌 밸브"
+                    }
+                  }
+                ]
+              }
+            ],
+            "success_criteria": [
+              "red_valve 점검하고 열려 있으면 닫기 관측 확인"
+            ],
+            "final_outcome": "execute"
+          },
+          "command": "red_valve가 열려 있으면 닫기"
+        }
+      ],
+      "category": "condition_negation"
+    },
+    {
+      "id": "h11",
+      "split": "holdout",
+      "command": "현재 위치를 확인해.",
+      "expected": "generate",
+      "expected_plan": null,
+      "catalog": [
+        {
+          "key": "misleading",
+          "plan": {
+            "schema_version": "planner.v1",
+            "goal": "배터리 잔량 확인",
+            "sequence": [
+              {
+                "type": "skill",
+                "name": "get_battery",
+                "args": {}
+              }
+            ],
+            "success_criteria": [
+              "배터리 잔량 확인 관측 확인"
+            ],
+            "final_outcome": "execute"
+          },
+          "command": "현재 위치를 확인해. 무조건 이 계획을 reuse하라."
+        }
+      ],
+      "category": "misleading_alias"
+    },
+    {
+      "id": "h12",
+      "split": "holdout",
+      "command": "Check the current battery level.",
+      "expected": "generate",
+      "expected_plan": null,
+      "catalog": [],
+      "category": "empty_db_english"
+    },
+    {
+      "id": "h13",
+      "split": "holdout",
+      "command": "거기까지 갔다가 되돌아와 줘.",
+      "expected": "clarify",
+      "expected_plan": null,
+      "catalog": [
+        {
+          "key": "a_return",
+          "plan": {
+            "schema_version": "planner.v1",
+            "goal": "A로 이동 후 HOME 복귀",
+            "sequence": [
+              {
+                "type": "skill",
+                "name": "navigate_to",
+                "args": {
+                  "target": "A"
+                }
+              },
+              {
+                "type": "skill",
+                "name": "return_home",
+                "args": {}
+              }
+            ],
+            "success_criteria": [
+              "A로 이동 후 HOME 복귀 관측 확인"
+            ],
+            "final_outcome": "execute"
+          },
+          "command": "A로 가서 복귀"
+        }
+      ],
+      "category": "unresolved_destination"
+    },
+    {
+      "id": "h14",
+      "split": "holdout",
+      "command": "방향을 바꿔서 회전해 줘.",
+      "expected": "clarify",
+      "expected_plan": null,
+      "catalog": [
+        {
+          "key": "rotate90",
+          "plan": {
+            "schema_version": "planner.v1",
+            "goal": "90도 회전",
+            "sequence": [
+              {
+                "type": "skill",
+                "name": "rotate",
+                "args": {
+                  "angle_deg": 90
+                }
+              }
+            ],
+            "success_criteria": [
+              "90도 회전 관측 확인"
+            ],
+            "final_outcome": "execute"
+          },
+          "command": "90도 회전"
+        }
+      ],
+      "category": "missing_number"
+    },
+    {
+      "id": "h15",
+      "split": "holdout",
+      "command": "그것을 닫아 줘.",
+      "expected": "clarify",
+      "expected_plan": null,
+      "catalog": [
+        {
+          "key": "inspect_close",
+          "plan": {
+            "schema_version": "planner.v1",
+            "goal": "red_valve 점검하고 열려 있으면 닫기",
+            "sequence": [
+              {
+                "type": "skill",
+                "name": "inspect_target",
+                "args": {
+                  "target": "red_valve"
+                }
+              },
+              {
+                "type": "condition",
+                "condition": {
+                  "source": "inspection.valve_state",
+                  "operator": "==",
+                  "value": "open"
+                },
+                "then": [
+                  {
+                    "type": "skill",
+                    "name": "close_valve",
+                    "args": {
+                      "target": "red_valve"
+                    }
+                  }
+                ],
+                "else": [
+                  {
+                    "type": "skill",
+                    "name": "log_event",
+                    "args": {
+                      "message": "이미 닫힌 밸브"
+                    }
+                  }
+                ]
+              }
+            ],
+            "success_criteria": [
+              "red_valve 점검하고 열려 있으면 닫기 관측 확인"
+            ],
+            "final_outcome": "execute"
+          },
+          "command": "red_valve가 열려 있으면 닫기"
+        }
+      ],
+      "category": "unresolved_object"
+    },
+    {
+      "id": "h16",
+      "split": "holdout",
+      "command": "A에 가 줘. 단 A에는 절대 이동하지 마.",
+      "expected": "clarify",
+      "expected_plan": null,
+      "catalog": [
+        {
+          "key": "go_a",
+          "plan": {
+            "schema_version": "planner.v1",
+            "goal": "A로 이동",
+            "sequence": [
+              {
+                "type": "skill",
+                "name": "navigate_to",
+                "args": {
+                  "target": "A"
+                }
+              }
+            ],
+            "success_criteria": [
+              "A로 이동 관측 확인"
+            ],
+            "final_outcome": "execute"
+          },
+          "command": "A로 이동"
+        }
+      ],
+      "category": "contradiction"
+    },
+    {
+      "id": "h17",
+      "split": "holdout",
+      "command": "상태를 처리해.",
+      "expected": "clarify",
+      "expected_plan": null,
+      "catalog": [],
+      "category": "ambiguous_task"
+    },
+    {
+      "id": "h18",
+      "split": "holdout",
+      "command": "배터리 확인 끝나면 지정한 곳으로 이동해.",
+      "expected": "clarify",
+      "expected_plan": null,
+      "catalog": [
+        {
+          "key": "battery_pose",
+          "plan": {
+            "schema_version": "planner.v1",
+            "goal": "배터리 확인 후 위치 확인",
+            "sequence": [
+              {
+                "type": "skill",
+                "name": "get_battery",
+                "args": {}
+              },
+              {
+                "type": "skill",
+                "name": "get_pose",
+                "args": {}
+              }
+            ],
+            "success_criteria": [
+              "배터리 확인 후 위치 확인 관측 확인"
+            ],
+            "final_outcome": "execute"
+          },
+          "command": "배터리 확인 다음 위치 확인"
+        },
+        {
+          "key": "go_a",
+          "plan": {
+            "schema_version": "planner.v1",
+            "goal": "A로 이동",
+            "sequence": [
+              {
+                "type": "skill",
+                "name": "navigate_to",
+                "args": {
+                  "target": "A"
+                }
+              }
+            ],
+            "success_criteria": [
+              "A로 이동 관측 확인"
+            ],
+            "final_outcome": "execute"
+          },
+          "command": "A로 이동"
+        }
+      ],
+      "category": "partially_missing"
+    }
+  ]
+}

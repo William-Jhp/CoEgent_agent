@@ -1,0 +1,19 @@
+# CoEgent LangGraph integration
+
+## Intent and accepted scope
+The user explicitly requested implementation after the comparison of LangGraph with current CoEgent, and asked whether each process becomes a node. Implement actual node-driven control of existing planning/native/A2 paths, not an unused demonstration or one opaque node around the old mission loop. Preserve existing interfaces, safety, bounded budgets, ownership and report contracts. The preceding discussion and execution request authorize implementation; no further product approval is needed. No live robot movement or model loading is required for this code integration.
+
+## Design decisions (implementation choices)
+- LangGraph becomes a required Python orchestration dependency; no LangChain model wrapper or remote service is required. Use ordinary async functions and existing model clients.
+- Add a small common async graph runner that accepts stage callbacks and explicit allowed transitions, emits start/end/error trace records and exposes Mermaid topology. No implicit node retries. Cancellation and exceptions reach existing resource owners. No live SDK objects are checkpointed.
+- Planner dispatch has separate select_planner and generate_plan nodes, preserving cancellation checks, shared model gates, ScriptedPlanner reuse and clarify semantics. No extra LLM calls.
+- PlanGenerator uses context, call_planner, validate_plan, repair_plan and report nodes. Existing selector dispatch remains a subgraph. Plan mode never constructs an execution backend, sends stop or archives success.
+- Native CoEgent replaces its mission while loop with refresh_state, plan, validate_plan, execute_plan, inspect_completion, stop_before_replan, diagnose_error and replan nodes. Existing admission, monitor, cancellation cleanup, final evidence and report seal remain authoritative. request/provided plans cannot acquire an implicit generator.
+- A2 host replaces continuation loop with execute, evaluate, plan_remaining, validate_continuation and finish nodes. A2 worker separates execute, stop_motion and inspect nodes, with full runtime close always in finally. Existing localization lifetime fix is preserved.
+- Durable question waiting is a separate planning-only public API using LangGraph SQLite checkpoints and interrupt/Command resume, scoped by caller-provided thread ID. It stores command/state/reports and a pending question, and routes an explicit user answer into subsequent planning. It cannot own an executor. A new instance can resume with the same DB and configured planner. Plan catalog DB, graph checkpoint DB and execution journal are separate.
+- Physical mission graphs are intentionally not auto-replayed after process restart. On interruption existing journals remain the authority; recovery must reconcile actual robot state. Documentation explicitly states that physical durable recovery is not implemented by this integration.
+- Reports retain existing fields and gain workflow trace/metadata without requiring callers to understand LangGraph. Add a read-only graph/topology CLI command. Existing run/plan/request CLI paths use graphs by default.
+- Update A2 Dockerfile and rebuild only the CoEgent-owned adapter image to contain LangGraph dependencies; do not modify colleague images or services.
+
+## Acceptance
+Existing regression suite remains green. Add tests proving real conditional graph routing for reuse/generate/clarify, validation repair bounds, inspector mismatch/replan, missing evidence, provided-plan no inference, cancellation/stop ordering and no duplicate side effects. Check persistent clarification resume across new API instance, thread conflict, no unsafe object serialization and no physical dispatch. Verify graph CLI imports no model/ROS SDK and serializable reports. Run full existing test suite, controlled CLI scenarios and isolated checkpoint DB tests; no production plan DB writes or live robot movement.

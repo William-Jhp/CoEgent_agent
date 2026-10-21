@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "local-llm-server-control"
+version = "0.1.0"
+description = "Independent local vLLM server configuration and lifecycle control"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+local-llm-server = "local_llm_server.cli:main"
+
+[project.entry-points."vllm.general_plugins"]
+coegent_gemma4_compat = "local_llm_server.gemma4_compat:register"
+
+[tool.setuptools.packages.find]
+include = ["local_llm_server*"]

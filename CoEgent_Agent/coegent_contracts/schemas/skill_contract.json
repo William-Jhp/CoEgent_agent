@@ -1,0 +1,606 @@
+[
+  {
+    "name": "get_battery",
+    "args_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [],
+      "properties": {}
+    },
+    "preconditions": [
+      "authority"
+    ],
+    "result_schema": {
+      "type": "object",
+      "required": [
+        "battery_percent"
+      ],
+      "properties": {
+        "battery_percent": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        }
+      }
+    },
+    "effects": [
+      "observation.result",
+      "observation.battery"
+    ]
+  },
+  {
+    "name": "get_pose",
+    "args_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [],
+      "properties": {}
+    },
+    "preconditions": [
+      "authority"
+    ],
+    "result_schema": {
+      "type": "object",
+      "required": [
+        "location"
+      ],
+      "properties": {
+        "location": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "effects": [
+      "observation.result",
+      "observation.pose"
+    ]
+  },
+  {
+    "name": "inspect_scene",
+    "args_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [],
+      "properties": {}
+    },
+    "preconditions": [
+      "authority"
+    ],
+    "result_schema": {
+      "type": "object",
+      "required": [],
+      "properties": {}
+    },
+    "effects": [
+      "observation.result"
+    ]
+  },
+  {
+    "name": "check_path",
+    "args_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "target"
+      ],
+      "properties": {
+        "target": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "preconditions": [
+      "authority"
+    ],
+    "result_schema": {
+      "type": "object",
+      "required": [
+        "target",
+        "path_clear"
+      ],
+      "properties": {
+        "target": {
+          "type": "string",
+          "minLength": 1
+        },
+        "path_clear": {
+          "type": "boolean"
+        }
+      }
+    },
+    "effects": [
+      "observation.result",
+      "observation.path"
+    ]
+  },
+  {
+    "name": "navigate_to",
+    "args_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "target"
+      ],
+      "properties": {
+        "target": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "preconditions": [
+      "authority",
+      "robot_ready",
+      "battery_outbound",
+      "path_clear"
+    ],
+    "result_schema": {
+      "type": "object",
+      "required": [
+        "location"
+      ],
+      "properties": {
+        "location": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "effects": [
+      "observation.result",
+      "internal.invalidate_observations",
+      "observation.pose",
+      "physical.stopped",
+      "physical.robot_pose"
+    ]
+  },
+  {
+    "name": "move_relative",
+    "args_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "distance"
+      ],
+      "properties": {
+        "distance": {
+          "type": "number"
+        }
+      }
+    },
+    "preconditions": [
+      "authority",
+      "robot_ready",
+      "battery_outbound",
+      "distance_limit",
+      "obstacle_clear"
+    ],
+    "result_schema": {
+      "type": "object",
+      "required": [],
+      "properties": {}
+    },
+    "effects": [
+      "observation.result",
+      "internal.invalidate_observations",
+      "physical.stopped",
+      "physical.robot_pose"
+    ]
+  },
+  {
+    "name": "rotate",
+    "args_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "angle_deg"
+      ],
+      "properties": {
+        "angle_deg": {
+          "type": "number"
+        }
+      }
+    },
+    "preconditions": [
+      "authority",
+      "robot_ready",
+      "battery_outbound",
+      "angle_limit"
+    ],
+    "result_schema": {
+      "type": "object",
+      "required": [],
+      "properties": {}
+    },
+    "effects": [
+      "observation.result",
+      "internal.invalidate_observations",
+      "physical.stopped",
+      "physical.robot_pose"
+    ]
+  },
+  {
+    "name": "stop",
+    "args_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [],
+      "properties": {}
+    },
+    "preconditions": [],
+    "result_schema": {
+      "type": "object",
+      "required": [
+        "stopped"
+      ],
+      "properties": {
+        "stopped": {
+          "const": true
+        }
+      }
+    },
+    "effects": [
+      "observation.result",
+      "physical.stopped"
+    ]
+  },
+  {
+    "name": "return_home",
+    "args_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [],
+      "properties": {}
+    },
+    "preconditions": [
+      "authority",
+      "robot_ready",
+      "battery_return",
+      "path_clear"
+    ],
+    "result_schema": {
+      "type": "object",
+      "required": [
+        "location"
+      ],
+      "properties": {
+        "location": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "effects": [
+      "observation.result",
+      "internal.invalidate_observations",
+      "observation.pose",
+      "physical.stopped",
+      "physical.robot_pose"
+    ]
+  },
+  {
+    "name": "inspect_target",
+    "args_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "target"
+      ],
+      "properties": {
+        "target": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "preconditions": [
+      "authority"
+    ],
+    "result_schema": {
+      "type": "object",
+      "required": [
+        "target",
+        "target_exists",
+        "location"
+      ],
+      "properties": {
+        "target": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target_exists": {
+          "type": "boolean"
+        },
+        "location": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "effects": [
+      "observation.result",
+      "observation.target_state"
+    ]
+  },
+  {
+    "name": "close_valve",
+    "args_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "target"
+      ],
+      "properties": {
+        "target": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "preconditions": [
+      "authority",
+      "robot_ready",
+      "battery_outbound",
+      "arm_ready",
+      "fresh_inspection"
+    ],
+    "result_schema": {
+      "type": "object",
+      "required": [
+        "target",
+        "valve_state"
+      ],
+      "properties": {
+        "target": {
+          "type": "string",
+          "minLength": 1
+        },
+        "valve_state": {
+          "const": "closed"
+        }
+      }
+    },
+    "effects": [
+      "observation.result",
+      "physical.valve_state",
+      "physical.arm_state"
+    ]
+  },
+  {
+    "name": "open_valve",
+    "args_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "target"
+      ],
+      "properties": {
+        "target": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "preconditions": [
+      "authority",
+      "robot_ready",
+      "battery_outbound",
+      "arm_ready",
+      "fresh_inspection"
+    ],
+    "result_schema": {
+      "type": "object",
+      "required": [
+        "target",
+        "valve_state"
+      ],
+      "properties": {
+        "target": {
+          "type": "string",
+          "minLength": 1
+        },
+        "valve_state": {
+          "const": "open"
+        }
+      }
+    },
+    "effects": [
+      "observation.result",
+      "physical.valve_state",
+      "physical.arm_state"
+    ]
+  },
+  {
+    "name": "pick_object",
+    "args_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "object"
+      ],
+      "properties": {
+        "object": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "preconditions": [
+      "authority",
+      "robot_ready",
+      "battery_outbound",
+      "arm_ready",
+      "fresh_inspection",
+      "empty_gripper"
+    ],
+    "result_schema": {
+      "type": "object",
+      "required": [
+        "holding"
+      ],
+      "properties": {
+        "holding": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "effects": [
+      "observation.result",
+      "physical.held_object",
+      "physical.arm_state"
+    ]
+  },
+  {
+    "name": "place_object",
+    "args_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "location"
+      ],
+      "properties": {
+        "location": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "preconditions": [
+      "authority",
+      "robot_ready",
+      "battery_outbound",
+      "arm_ready",
+      "holding_at_location"
+    ],
+    "result_schema": {
+      "type": "object",
+      "required": [
+        "holding"
+      ],
+      "properties": {
+        "holding": {
+          "type": "null"
+        }
+      }
+    },
+    "effects": [
+      "observation.result",
+      "physical.held_object",
+      "physical.arm_state"
+    ]
+  },
+  {
+    "name": "log_event",
+    "args_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "message"
+      ],
+      "properties": {
+        "message": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "preconditions": [
+      "authority"
+    ],
+    "result_schema": {
+      "type": "object",
+      "required": [],
+      "properties": {}
+    },
+    "effects": [
+      "observation.result"
+    ]
+  },
+  {
+    "name": "request_assistance",
+    "args_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reason"
+      ],
+      "properties": {
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "preconditions": [
+      "authority"
+    ],
+    "result_schema": {
+      "type": "object",
+      "required": [],
+      "properties": {}
+    },
+    "effects": [
+      "observation.result"
+    ]
+  },
+  {
+    "name": "localize",
+    "args_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [],
+      "properties": {}
+    },
+    "preconditions": [
+      "authority"
+    ],
+    "result_schema": {
+      "type": "object",
+      "required": [
+        "localization_valid"
+      ],
+      "properties": {
+        "localization_valid": {
+          "const": true
+        }
+      }
+    },
+    "effects": [
+      "observation.result",
+      "observation.localization"
+    ]
+  },
+  {
+    "name": "dock_for_charge",
+    "args_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [],
+      "properties": {}
+    },
+    "preconditions": [
+      "authority",
+      "robot_ready",
+      "battery_return",
+      "dock_at_home"
+    ],
+    "result_schema": {
+      "type": "object",
+      "required": [
+        "charging"
+      ],
+      "properties": {
+        "charging": {
+          "const": true
+        }
+      }
+    },
+    "effects": [
+      "observation.result",
+      "physical.charging"
+    ]
+  }
+]

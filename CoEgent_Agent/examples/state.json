@@ -1,0 +1,19 @@
+{
+  "robot": {
+    "battery_percent": 80,
+    "location": "HOME",
+    "home": "HOME",
+    "localization_valid": true,
+    "arm_ready": true,
+    "estop": false,
+    "holding": null,
+    "stopped": true
+  },
+  "world": {
+    "paths": {"A": "clear", "B": "clear", "HOME": "clear"},
+    "obstacle": false,
+    "targets": {"red_valve": {"exists": true, "location": "A", "valve_state": "open"}}
+  },
+  "mission": {},
+  "observations": {}
+}

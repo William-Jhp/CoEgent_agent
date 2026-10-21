@@ -1,0 +1,19 @@
+runtime = "vllm"
+# All relative paths are resolved from this file's directory.
+model_path = "../model/hf/gemma4-e2b-robot-sft-v0.4-merged"
+adapter_path = "../model/adapters/planner-sft-v1"
+model_name = "coegent-planner"
+base_model_name = "coegent-base"
+host = "127.0.0.1"
+port = 18520
+python_path = "../.venv/bin/python"
+run_dir = "../run"
+log_dir = "../logs"
+gpu_memory_utilization = 0.4
+max_model_len = 4096
+max_num_seqs = 1
+max_lora_rank = 16
+min_available_ram_gb = 6.0
+startup_timeout_s = 300.0
+request_timeout_s = 90.0
+stop_timeout_s = 20.0

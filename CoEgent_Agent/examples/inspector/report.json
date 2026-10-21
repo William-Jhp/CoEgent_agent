@@ -1,0 +1,8 @@
+{
+  "mission_id": "inspection-example",
+  "revision": 1,
+  "report_id": "executor-completion-1",
+  "kind": "completed",
+  "scope": "mission",
+  "message": "A에 도착했습니다."
+}

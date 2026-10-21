@@ -1,0 +1,19 @@
+# Same GGUF, template and llama.cpp libraries as CoEgent's native inprocess default.
+runtime = "llamacpp"
+model_path = "../model/gguf/gemma-4-E4B_q4_0-it.gguf"
+model_name = "coegent-e4b-gguf"
+llamacpp_path = "../runtimes/llamacpp/bin/llama-server"
+chat_template_path = "e4b_no_thinking.jinja"
+host = "127.0.0.1"
+port = 18520
+run_dir = "../run"
+log_dir = "../logs"
+gpu_layers = -1
+threads = 8
+max_model_len = 4096
+max_num_seqs = 1
+min_available_ram_gb = 6.0
+min_available_vram_gb = 6.0
+startup_timeout_s = 300.0
+request_timeout_s = 90.0
+stop_timeout_s = 20.0

@@ -1,0 +1,24 @@
+{
+  "schema_version": "planner.v1",
+  "goal": "Inspect the red valve, close if open, and return home",
+  "sequence": [
+    {"type": "skill", "name": "navigate_to", "args": {"target": "A"}},
+    {"type": "skill", "name": "inspect_target", "args": {"target": "red_valve"}},
+    {
+      "type": "condition",
+      "condition": {"source": "inspection.target_exists", "operator": "==", "value": true},
+      "then": [
+        {
+          "type": "condition",
+          "condition": {"source": "inspection.valve_state", "operator": "==", "value": "open"},
+          "then": [{"type": "skill", "name": "close_valve", "args": {"target": "red_valve"}}],
+          "else": [{"type": "skill", "name": "log_event", "args": {"message": "Already closed"}}]
+        }
+      ],
+      "else": [{"type": "abort", "reason": "target_absent", "return_home": true}]
+    },
+    {"type": "skill", "name": "return_home", "args": {}}
+  ],
+  "success_criteria": ["Valve verified closed", "Robot at HOME"],
+  "final_outcome": "execute"
+}

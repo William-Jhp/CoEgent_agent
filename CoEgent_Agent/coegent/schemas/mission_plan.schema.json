@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local/robot/planner.v1.schema.json",
+  "title": "Robot Mission Plan v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "goal", "sequence", "success_criteria", "final_outcome"],
+  "properties": {
+    "schema_version": {"const": "planner.v1"},
+    "goal": {"type": "string", "minLength": 1},
+    "sequence": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/node"}},
+    "success_criteria": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "final_outcome": {"enum": ["execute", "abort", "replan_required"]}
+  },
+  "$defs": {
+    "predicate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "operator", "value"],
+      "properties": {
+        "source": {"type": "string", "minLength": 1},
+        "operator": {"enum": ["==", "!=", ">", ">=", "<", "<=", "in", "not_in"]},
+        "value": {}
+      }
+    },
+    "node": {
+      "oneOf": [
+        {"$ref": "#/$defs/skill"},
+        {"$ref": "#/$defs/sequence"},
+        {"$ref": "#/$defs/condition"},
+        {"$ref": "#/$defs/retry"},
+        {"$ref": "#/$defs/fallback"},
+        {"$ref": "#/$defs/abort"},
+        {"$ref": "#/$defs/replan"}
+      ]
+    },
+    "skill": {
+      "type": "object", "additionalProperties": false,
+      "required": ["type", "name", "args"],
+      "properties": {"type": {"const": "skill"}, "name": {"type": "string"}, "args": {"type": "object"}}
+    },
+    "sequence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["type", "nodes"],
+      "properties": {"type": {"const": "sequence"}, "nodes": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/node"}}}
+    },
+    "condition": {
+      "type": "object", "additionalProperties": false,
+      "required": ["type", "condition", "then", "else"],
+      "properties": {
+        "type": {"const": "condition"}, "condition": {"$ref": "#/$defs/predicate"},
+        "then": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/node"}},
+        "else": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/node"}}
+      }
+    },
+    "retry": {
+      "type": "object", "additionalProperties": false,
+      "required": ["type", "max_attempts", "retry_if", "node"],
+      "properties": {
+        "type": {"const": "retry"}, "max_attempts": {"type": "integer", "minimum": 1, "maximum": 3},
+        "retry_if": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "node": {"$ref": "#/$defs/node"}, "fallback": {"$ref": "#/$defs/fallback"}
+      }
+    },
+    "fallback": {
+      "type": "object", "additionalProperties": false,
+      "required": ["type", "strategy", "sequence"],
+      "properties": {"type": {"const": "fallback"}, "strategy": {"type": "string"}, "sequence": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/node"}}}
+    },
+    "abort": {
+      "type": "object", "additionalProperties": false,
+      "required": ["type", "reason", "return_home"],
+      "properties": {"type": {"const": "abort"}, "reason": {"type": "string"}, "return_home": {"type": "boolean"}}
+    },
+    "replan": {
+      "type": "object", "additionalProperties": false,
+      "required": ["type", "reason", "constraints"],
+      "properties": {"type": {"const": "replan_required"}, "reason": {"type": "string"}, "constraints": {"type": "array", "minItems": 1, "items": {"type": "string"}}}
+    }
+  }
+}

@@ -1,0 +1,19 @@
+# Existing robot-SFT GGUF; this preset does not include the Planner-SFT PEFT adapter.
+# For a Planner-SFT GGUF, select its model file and optional converted GGUF adapter.
+runtime = "llamacpp"
+model_path = "../model/gguf/gemma4-e2b-sft-v0.4-Q8_0.gguf"
+model_name = "coegent-gemma4-gguf"
+llamacpp_path = "../runtimes/llamacpp/bin/llama-server"
+host = "127.0.0.1"
+port = 18520
+run_dir = "../run"
+log_dir = "../logs"
+gpu_layers = -1
+threads = 8
+max_model_len = 4096
+max_num_seqs = 1
+min_available_ram_gb = 6.0
+min_available_vram_gb = 4.0
+startup_timeout_s = 300.0
+request_timeout_s = 90.0
+stop_timeout_s = 20.0

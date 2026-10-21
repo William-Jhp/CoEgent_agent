@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "a2-execution-adapter"
+version = "0.1.0"
+description = "CoEgent executor plugin for the A2 Isaac ROS2 stack"
+requires-python = ">=3.11"
+dependencies = ["coegent-agent>=0.1.0,<0.2", "coegent-executor-adapters>=0.1.0,<0.2"]
+
+[project.entry-points."coegent.executors"]
+a2-isaac = "a2_execution_adapter:factory"
+
+[tool.setuptools.packages.find]
+include = ["a2_execution_adapter*"]

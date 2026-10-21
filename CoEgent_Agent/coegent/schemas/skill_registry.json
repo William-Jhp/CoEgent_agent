@@ -1,0 +1,23 @@
+{
+  "schema_version": "planner.v1",
+  "skills": {
+    "get_battery": {},
+    "get_pose": {},
+    "inspect_scene": {},
+    "check_path": {"target": "str"},
+    "navigate_to": {"target": "str"},
+    "move_relative": {"distance": "number"},
+    "rotate": {"angle_deg": "number"},
+    "stop": {},
+    "return_home": {},
+    "inspect_target": {"target": "str"},
+    "close_valve": {"target": "str"},
+    "open_valve": {"target": "str"},
+    "pick_object": {"object": "str"},
+    "place_object": {"location": "str"},
+    "log_event": {"message": "str"},
+    "request_assistance": {"reason": "str"},
+    "localize": {},
+    "dock_for_charge": {}
+  }
+}

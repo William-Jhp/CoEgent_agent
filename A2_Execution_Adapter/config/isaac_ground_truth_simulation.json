@@ -1,0 +1,15 @@
+{
+  "scene_dir": "/home/gritandgrind/dev/pjh/local_ai_study/A2_Execution_Adapter/maps/cuvslam360_9230e3f6_office_glass",
+  "pose_source": "isaac_ground_truth",
+  "allow_motion": true,
+  "auto_initialize": true,
+  "stream_events": true,
+  "mission_timeout_s": 3600,
+  "call_timeout_s": 1800,
+  "progress_timeout_s": 1200,
+  "private_path_bridge": true,
+  "planning_radius_m": 0.52,
+  "path_segment_m": 4.0,
+  "cancel_timeout_s": 40,
+  "shortcut_margin_m": 0.48
+}

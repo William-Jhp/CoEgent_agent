@@ -1,0 +1,5 @@
+# v0.19.1 supports Gemma4 and matches the CUDA 12.x / R580 driver baseline.
+vllm==0.19.1
+# vLLM 0.19.1 expects Gemma4 legacy global attention fields.
+# Newer heterogeneous per-layer config access is incompatible with this runtime.
+transformers==5.5.4

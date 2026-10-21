@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CoEgent StateContract v1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "robot": {
+      "type": "object",
+      "properties": {
+        "battery_percent": {"type": ["number", "null"], "minimum": 0, "maximum": 100},
+        "location": {"type": ["string", "null"]},
+        "home": {"type": ["string", "null"]},
+        "holding": {"type": ["string", "null"]},
+        "estop": {"type": ["boolean", "null"]},
+        "localization_valid": {"type": ["boolean", "null"]},
+        "arm_ready": {"type": ["boolean", "null"]},
+        "stopped": {"type": ["boolean", "null"]},
+        "charging": {"type": ["boolean", "null"]}
+      }
+    },
+    "world": {
+      "type": "object",
+      "properties": {
+        "paths": {"type": "object", "additionalProperties": {"type": ["string", "null"]}},
+        "obstacle": {"type": ["boolean", "null"]},
+        "targets": {"type": "object", "additionalProperties": {"type": "object"}}
+      }
+    },
+    "mission": {"type": "object"},
+    "observations": {"type": "object"}
+  }
+}
